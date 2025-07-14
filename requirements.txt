@@ -6,3 +6,5 @@ flask-jwt-extended
 flask-rest
 weasyprint
 uuid
+mysql-connector-python
+postgres
