@@ -1,0 +1,8 @@
+jinja2
+flask
+flask-cors
+flask-jwt
+flask-jwt-extended
+flask-rest
+weasyprint
+uuid
