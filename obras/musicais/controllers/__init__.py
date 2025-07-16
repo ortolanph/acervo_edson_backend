@@ -1,0 +1,1 @@
+from .instrumentos_controller import instrumentos_bp
