@@ -16,4 +16,4 @@ class InstrumentoMusical(db.Model):
         }
 
     def __repr__(self):
-        return f'<InstrumentoMusical {self.id}, {self.nome}, {self.grupo}'
+        return f'<InstrumentoMusical {self.id}, {self.nome}, {self.grupo}>'

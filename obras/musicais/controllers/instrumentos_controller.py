@@ -7,24 +7,23 @@ instrumentos_bp = Blueprint('instrumentos_musicais', __name__)
 
 
 @instrumentos_bp.route('/obras/musicais/instrumentos', methods=['GET'])
-def get_musical_instrument():
+def get_all_musical_instrument():
     """Get all musical instruments"""
     try:
         instrumentos = InstrumentoMusical.query.all()
-        return jsonify([user.to_dict() for user in instrumentos])
+        return jsonify([instrumento.to_dict() for instrumento in instrumentos])
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
 
 @instrumentos_bp.route('/obras/musicais/instrumentos', methods=['POST'])
 def create_instrument():
-    """Create a new musical isntrument"""
+    """Create a new musical instrument"""
     data = request.get_json()
 
     if not data or 'nome' not in data or 'grupo' not in data:
         return jsonify({'error': 'Informações obrigatórias de instrumento musical não informadas: nome e grupo'}), 400
 
-    # Check if user already exists
     existing_instrument = InstrumentoMusical.query.filter(
         (InstrumentoMusical.nome == data['nome']) | (InstrumentoMusical.grupo == data['grupo'])
     ).first()
