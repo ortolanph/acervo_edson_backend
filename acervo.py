@@ -6,8 +6,7 @@ from flask import Flask
 from infra import general_bp
 from infra.config import config
 from infra.database import wait_for_db, init_database, db
-from obras.musicais.controllers import instrumentos_bp
-
+from obras.musicais.controllers import instrumentos_bp, composicoes_bp
 
 logging.basicConfig(
     level=logging.INFO,
@@ -27,6 +26,7 @@ def create_app(config_name='default'):
 
     app.register_blueprint(general_bp)
     app.register_blueprint(instrumentos_bp)
+    app.register_blueprint(composicoes_bp)
 
     return app
 

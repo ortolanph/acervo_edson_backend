@@ -1,1 +1,2 @@
+from .composicoes_controller import composicoes_bp
 from .instrumentos_controller import instrumentos_bp
