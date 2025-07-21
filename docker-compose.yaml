@@ -19,8 +19,52 @@ services:
     networks:
       - acervo_network
 
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: phpmyadmin_ui
+    restart: unless-stopped
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      PMA_USER: root
+      PMA_PASSWORD: rootpassword
+      MYSQL_ROOT_PASSWORD: rootpassword
+    ports:
+      - "9002:80"
+    depends_on:
+      - mysql
+    networks:
+      - acervo_network
+
+  # Alternative: Adminer (lightweight alternative to phpMyAdmin)
+  adminer:
+    image: adminer:latest
+    container_name: adminer_ui
+    restart: unless-stopped
+    ports:
+      - "9003:8080"
+    depends_on:
+      - mysql
+    networks:
+      - acervo_network
+    environment:
+      ADMINER_DEFAULT_SERVER: mysql
+
+  swagger-editor-service:
+    image: docker.swagger.io/swaggerapi/swagger-editor
+    container_name: swagger-editor-main
+    expose:
+      - 8080
+    ports:
+      - 9004:8080
+    networks:
+      - acervo_network
+    volumes:
+      - swagger-editor-volume:/data
+
 volumes:
   acervo_mysql_data:
+  swagger-editor-volume:
 
 networks:
   acervo_network:
