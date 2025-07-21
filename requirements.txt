@@ -6,7 +6,9 @@ flask-cors
 flask-jwt
 flask-jwt-extended
 flask_restful
+flask-restx
 flask-sqlalchemy
+flask-swagger
 
 jinja2
 weasyprint

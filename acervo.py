@@ -1,5 +1,9 @@
+"""
+Starter file of the project.
+"""
 import logging
 import os
+import sys
 
 from flask import Flask
 
@@ -52,7 +56,7 @@ def main():
         )
     else:
         print("Failed to connect to database. Exiting...")
-        exit(1)
+        sys.exit(1)
 
 
 if __name__ == '__main__':

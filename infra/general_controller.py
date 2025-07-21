@@ -1,4 +1,5 @@
-from flask import Blueprint, jsonify
+from flask import jsonify, Blueprint
+
 from infra import db
 
 general_bp = Blueprint('general_info', __name__)
