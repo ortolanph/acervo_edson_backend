@@ -30,7 +30,7 @@ python acervo.py
 
 O programa estará executando no porto 9100.
 
-5. (PENDING) Usar o programa POSTMAN com a collection localizada na raiz do projeto
+5. Usar o programa POSTMAN, criando uma API com o seguinte endereço: http://localhost:9100/swagger.json.
 
 ## Parar programa
 
@@ -51,3 +51,8 @@ docker-compose down
 ```shell
 docker volume rm acervo_edson_backend_mysql_data
 ```
+
+## Documentação da API
+
+Digite em uma aba de um browser: http://localhost:9100/docs.
+

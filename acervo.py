@@ -6,11 +6,11 @@ import os
 import sys
 
 from flask import Flask
+from flask_restx import Api
 
-from infra import general_bp
+from infra import system_info_ns
 from infra.config import config
 from infra.database import wait_for_db, init_database, db
-from obras.musicais.controllers import instrumentos_bp, composicoes_bp
 
 logging.basicConfig(
     level=logging.INFO,
@@ -28,9 +28,13 @@ def create_app(config_name='default'):
 
     db.init_app(app)
 
-    app.register_blueprint(general_bp)
-    app.register_blueprint(instrumentos_bp)
-    app.register_blueprint(composicoes_bp)
+    api = Api(app,
+              version='0.0.0',
+              title='Acervus',
+              description='Acervo multimidia de Edson Ortolan',
+              doc='/docs')
+
+    api.add_namespace(system_info_ns, path='/system')
 
     return app
 

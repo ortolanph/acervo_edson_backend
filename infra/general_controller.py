@@ -1,19 +1,40 @@
-from flask import jsonify, Blueprint
+from datetime import datetime
+
+from flask_restx import Namespace, Resource
 
 from infra import db
 
-general_bp = Blueprint('general_info', __name__)
+system_info_ns = Namespace(
+    'system_info',
+    description='Useful system information')
 
 
-@general_bp.route('/health', methods=['GET'])
-def health_check():
-    """Health check endpoint"""
-    return (
-        jsonify(
-            {
-                'status': 'healthy',
-                'message': 'API is running',
-                'database_status': 'OK' if db else 'KO'
+@system_info_ns.route("/health")
+class SystemHealth(Resource):
+
+    @system_info_ns.doc('health_check')
+    def get(self):
+        """Health check endpoint"""
+        return {
+            'status': 'OK',
+            'timestamp': str(datetime.now()),
+            'service': 'Acervus',
+            'database_status': 'OK' if db else 'KO'
+        }
+
+
+@system_info_ns.route("/version")
+class SystemVersion(Resource):
+
+    @system_info_ns.doc('system_version')
+    def get(self):
+        """System Version"""
+        return {
+            'project_name': 'Acervus',
+            'version': '0.0.0',
+            'details': {
+                'major': 0,
+                'minor': 0,
+                'fix': 0
             }
-        )
-    )
+        }
