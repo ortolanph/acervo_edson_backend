@@ -50,21 +50,8 @@ services:
     environment:
       ADMINER_DEFAULT_SERVER: mysql
 
-  swagger-editor-service:
-    image: docker.swagger.io/swaggerapi/swagger-editor
-    container_name: swagger-editor-main
-    expose:
-      - 8080
-    ports:
-      - 9004:8080
-    networks:
-      - acervo_network
-    volumes:
-      - swagger-editor-volume:/data
-
 volumes:
   acervo_mysql_data:
-  swagger-editor-volume:
 
 networks:
   acervo_network:
