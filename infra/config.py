@@ -1,9 +1,11 @@
 """
-Infra configurations
+Infrastructure configurations.
 """
+import dataclasses
 import os
 
 
+@dataclasses.dataclass
 class Config:
     """Base configuration class"""
     DATABASE_URL = os.getenv('DATABASE_URL',
@@ -17,11 +19,13 @@ class Config:
     PORT = 9100
 
 
+@dataclasses.dataclass
 class DevelopmentConfig(Config):
     """Development configuration"""
     DEBUG = True
 
 
+@dataclasses.dataclass
 class ProductionConfig(Config):
     """Production configuration"""
     DEBUG = False

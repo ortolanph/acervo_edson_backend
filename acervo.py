@@ -11,6 +11,7 @@ from flask_restx import Api
 from infra import system_info_ns
 from infra.config import config
 from infra.database import wait_for_db, init_database, db
+from obras.musicas.controllers.composicao_controller import composicao_ns
 
 logging.basicConfig(
     level=logging.INFO,
@@ -35,6 +36,7 @@ def create_app(config_name='default'):
               doc='/docs')
 
     api.add_namespace(system_info_ns, path='/system')
+    api.add_namespace(composicao_ns, path='/obras')
 
     return app
 

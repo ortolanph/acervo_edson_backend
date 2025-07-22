@@ -1,3 +1,6 @@
+"""
+General system endpoints
+"""
 from datetime import datetime
 
 from flask_restx import Namespace, Resource
@@ -11,6 +14,9 @@ system_info_ns = Namespace(
 
 @system_info_ns.route("/health")
 class SystemHealth(Resource):
+    """
+    System health resource class
+    """
 
     @system_info_ns.doc('health_check')
     def get(self):
@@ -25,6 +31,9 @@ class SystemHealth(Resource):
 
 @system_info_ns.route("/version")
 class SystemVersion(Resource):
+    """
+    System version resource class
+    """
 
     @system_info_ns.doc('system_version')
     def get(self):
