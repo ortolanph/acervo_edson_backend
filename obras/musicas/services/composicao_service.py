@@ -12,14 +12,19 @@ class ComposicaoService:
 
     @staticmethod
     def get_composicao_by_id(composicao_id):
-        """Get user by ID"""
         return Composicao.get_by_id(composicao_id)
 
     @staticmethod
+    def get_composicao_by_numero(numero_composicao):
+        return Composicao.get_by_numero_composicao(numero_composicao)
+
+    @staticmethod
     def create_composicao(data):
-        existing_composicao = Composicao.get_by_numero_composicao(data['numero_composicao'])
+        numero_composicao = f"{data['data_composicao'].strip()}/{data['categoria']}"
+
+        existing_composicao = Composicao.get_by_numero_composicao(numero_composicao)
         if existing_composicao:
-            raise ValueError("Composicao já existe")
+            raise ValueError(f"Ja existe composicao {numero_composicao}")
 
         try:
             return Composicao.create(
@@ -27,6 +32,7 @@ class ComposicaoService:
                 data_composicao=data['data_composicao'],
                 categoria=data['categoria'],
                 observacao=data['observacao'],
+                numero_composicao=numero_composicao
             )
         except Exception as e:
             db.session.rollback()

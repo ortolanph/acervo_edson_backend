@@ -36,20 +36,6 @@ services:
     networks:
       - acervo_network
 
-  # Alternative: Adminer (lightweight alternative to phpMyAdmin)
-  adminer:
-    image: adminer:latest
-    container_name: adminer_ui
-    restart: unless-stopped
-    ports:
-      - "9003:8080"
-    depends_on:
-      - mysql
-    networks:
-      - acervo_network
-    environment:
-      ADMINER_DEFAULT_SERVER: mysql
-
 volumes:
   acervo_mysql_data:
 
