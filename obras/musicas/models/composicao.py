@@ -9,7 +9,6 @@ class Composicao(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     titulo = db.Column(db.String(255), nullable=False)
-    numero_composicao = db.Column(db.String(255), nullable=False)
     data_composicao = db.Column(db.String(10), nullable=False)
     categoria = db.Column(db.String(30), nullable=False)
     observacao = db.Column(db.Text)
@@ -20,7 +19,6 @@ class Composicao(db.Model):
         return (f'<Composicao:: '
                 f'id:{self.id}, '
                 f'titulo:{self.titulo}, '
-                f'numero_composicao:{self.numero_composicao}, '
                 f'data_composicao:{self.data_composicao}, '
                 f'categoria:{self.categoria} '
                 f'created_at: {self.created_at.isoformat() if self.created_at else None} ',
@@ -30,7 +28,6 @@ class Composicao(db.Model):
         return {
             'id': self.id,
             'titulo': self.titulo,
-            'numero_composicao': self.numero_composicao,
             'data_composicao': self.data_composicao,
             'categoria': self.categoria,
             'observacao': self.observacao,
@@ -64,11 +61,16 @@ class Composicao(db.Model):
 
     @classmethod
     def get_by_id(self, composicao_id):
-        return self.select(Composicao).get(composicao_id)
+        return self.query.get(composicao_id)
 
     @classmethod
-    def get_by_numero_composicao(self, numero_composicao):
-        return self.query.filter_by(numero_composicao=numero_composicao).first()
+    def get_by_data_and_categoria(self, data_composicao, categoria):
+        return (self
+                .query
+                .filter_by(
+                    data_composicao=data_composicao,
+                    categoria=categoria)
+                .first())
 
     @classmethod
     def get_all(self):

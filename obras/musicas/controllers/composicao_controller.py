@@ -90,17 +90,17 @@ class ComposicaoResource(Resource):
         except Exception as e:
             composicao_ns.abort(500, str(e))
 
-# @composicao_ns.route('/musicais/numero_composicao/<numero_composicao>')
-# @composicao_ns.response(404, 'Composição não encontrada')
-# @composicao_ns.param('numero_composicao', 'Número interno da composição')
-# class ComposicaoAdvancedResource(Resource):
-#     @composicao_ns.doc('get_composicao_by_numero')
-#     @composicao_ns.marshal_with(composicao_model)
-#     def get(self, numero_composicao):
-#         try:
-#             composicao = ComposicaoService.get_composicao_by_numero(numero_composicao)
-#             if not composicao:
-#                 composicao_ns.abort(404, f"Composição {numero_composicao} não encontrada")
-#             return composicao.to_dict()
-#         except Exception as e:
-#             composicao_ns.abort(500, f"Error ao recuperar composição: {str(e)}")
+@composicao_ns.route('/musicais/composicao/<data_composicao>/<categoria>')
+@composicao_ns.response(404, 'Composição não encontrada')
+@composicao_ns.param('identificacao_composicao', 'Identificação da composição')
+class ComposicaoAdvancedResource(Resource):
+    @composicao_ns.doc('get_composicao_by_data_and_categoria')
+    @composicao_ns.marshal_with(composicao_model)
+    def get(self, data_composicao, categoria):
+        try:
+            composicao = ComposicaoService.get_composicao_by_numero(data_composicao, categoria)
+            if not composicao:
+                composicao_ns.abort(404, f"Composição {data_composicao}/{categoria} não encontrada")
+            return composicao.to_dict()
+        except Exception as e:
+            composicao_ns.abort(500, f"Error ao recuperar composição: {str(e)}")
