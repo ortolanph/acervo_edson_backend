@@ -21,11 +21,11 @@ class ComposicaoBasic(Resource):
         except Exception as e:
             composicao_ns.abort(500, f"Error retrieving users: {str(e)}")
 
-    @composicao_ns.doc('create_user')
+    @composicao_ns.doc('create_composicao')
     @composicao_ns.expect(composicao_input, validate=True)
     @composicao_ns.marshal_with(composicao_model, code=201)
     def post(self):
-        """Create a new user"""
+        """Cria uma nova composicao"""
         data = request.get_json()
 
         if not data:

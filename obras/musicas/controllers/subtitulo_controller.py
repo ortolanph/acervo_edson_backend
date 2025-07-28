@@ -16,7 +16,7 @@ class SubtituloBasic(Resource):
     @subtitulo_ns.expect(subtitulo_input, validate=True)
     @subtitulo_ns.marshal_with(subtitulo_model, code=201)
     def post(self):
-        """Create a new user"""
+        """Cria um novo subtitulo"""
         data = request.get_json()
 
         if not data:
