@@ -1,5 +1,4 @@
 from infra import db
-from obras.musicas.models.composicao import Composicao
 from obras.musicas.models.subtitulo import Subtitulo
 
 
@@ -7,15 +6,15 @@ class SubtituloService:
     """Service layer for user operations"""
 
     @staticmethod
-    def get_subtitlo_by_id(subtitulo_id):
+    def get_subtitulo_by_id(subtitulo_id):
         return Subtitulo.get_by_id(subtitulo_id)
 
     @staticmethod
-    def get_composicao_by_composicao(composicao_id):
+    def get_subtitulos_by_composicao(composicao_id):
         return Subtitulo.get_by_composicao_id(composicao_id)
 
     @staticmethod
-    def create_composicao(data):
+    def create_subtitulo(data):
         existing_subtitle = Subtitulo.get_by_subtitulo(data['subtitulo'])
         if existing_subtitle:
             raise ValueError(f"Ja existe subtitulo {data['subtitulo']}")
