@@ -8,7 +8,7 @@ class Subtitulo(db.Model):
     __tablename__ = 'subtitulo'
 
     id = db.Column(db.Integer, primary_key=True)
-    id_composicao = db.Column(db.Integer, foreign_key="composicao.id")
+    id_composicao = db.Column(db.Integer)
     subtitulo = db.Column(db.String(255), nullable=False)
     lingua = db.Column(db.String(10), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.now())
@@ -61,7 +61,10 @@ class Subtitulo(db.Model):
 
     @classmethod
     def get_by_composicao_id(self, id_composicao):
-        return self.query.filter_by(id_composicao=id_composicao)
+        return (self
+                .query
+                .filter_by(id_composicao=id_composicao)
+                .all())
 
     @classmethod
     def get_by_subtitulo(self, subtitulo):

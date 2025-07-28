@@ -22,7 +22,7 @@ def get_subtitulo_schema(api):
                                       dt_format='iso8601')
     })
 
-    subtitulo_input = api.model('ComposicaoInput', {
+    subtitulo_input = api.model('SubtituloInput', {
         'id_composicao': fields.Integer(required=True,
                                         description='Identificacao da composicao associada',
                                         example="1"),
@@ -34,7 +34,7 @@ def get_subtitulo_schema(api):
                                 example='en-US'),
     })
 
-    subtitulo_update = api.model('ComposicaoUpdate', {
+    subtitulo_update = api.model('SubtituloUpdate', {
         'id_composicao': fields.Integer(description='Identificacao da composicao associada',
                                         example="1"),
         'subtitulo': fields.String(description='Subtítulo da composição',

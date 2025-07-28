@@ -14,7 +14,7 @@ class SubtituloBasic(Resource):
 
     @subtitulo_ns.doc('create_subtitulo')
     @subtitulo_ns.expect(subtitulo_input, validate=True)
-    @subtitulo_ns.marshal_with(subtitulo_model, code=201)
+    @subtitulo_ns.marshal_list_with(subtitulo_model, code=201)
     def post(self):
         """Cria um novo subtitulo"""
         data = request.get_json()
@@ -93,6 +93,6 @@ class SubtituloAdvancedResource(Resource):
             subtitulos = SubtituloService.get_subtitulos_by_composicao(id_composicao)
             if not subtitulos:
                 subtitulo_ns.abort(404, f"Composição {id_composicao} não possui subtítulos")
-            return subtitulos.to_dict()
+            return [subtitulo.to_dict() for subtitulo in subtitulos]
         except Exception as e:
             subtitulo_ns.abort(500, f"Error ao recuperar composição: {str(e)}")

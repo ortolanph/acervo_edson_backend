@@ -36,13 +36,11 @@ class Composicao(db.Model):
         }
 
     @classmethod
-    def create(self, titulo, data_composicao, categoria, numero_composicao, observacao=None):
-
+    def create(self, titulo, data_composicao, categoria, observacao=None):
         composicao = self(titulo=titulo,
                           data_composicao=data_composicao,
                           categoria=categoria,
-                          observacao=observacao,
-                          numero_composicao=numero_composicao)
+                          observacao=observacao,)
         db.session.add(composicao)
         db.session.commit()
         return composicao

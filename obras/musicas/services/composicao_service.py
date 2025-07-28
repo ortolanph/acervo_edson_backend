@@ -22,7 +22,7 @@ class ComposicaoService:
     def create_composicao(data):
         existing_composicao = Composicao.get_by_data_and_categoria(data['data_composicao'], data['categoria'])
         if existing_composicao:
-            raise ValueError(f"Ja existe composicao {data['data_composicao']/data['categoria']}")
+            raise ValueError(f"Ja existe composicao {data['data_composicao']}/{data['categoria']}")
 
         try:
             return Composicao.create(

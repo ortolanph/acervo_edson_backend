@@ -11,7 +11,7 @@ class Config:
     DATABASE_URL = os.getenv('DATABASE_URL',
                              'mysql+pymysql://'
                              'appuser:apppassword@localhost:3306/'
-                             'testdb?charset=utf8mb4&ssl_disabled=true')
+                             'acervus_db?charset=utf8mb4&ssl_disabled=true')
     SQLALCHEMY_DATABASE_URI = DATABASE_URL
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     DEBUG = True
