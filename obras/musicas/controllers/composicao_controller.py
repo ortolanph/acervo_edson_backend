@@ -90,6 +90,7 @@ class ComposicaoResource(Resource):
         except Exception as e:
             composicao_ns.abort(500, str(e))
 
+
 @composicao_ns.route('/musicais/composicao/<data_composicao>/<categoria>')
 @composicao_ns.response(404, 'Composição não encontrada')
 @composicao_ns.param('identificacao_composicao', 'Identificação da composição')

@@ -40,7 +40,7 @@ class Composicao(db.Model):
         composicao = self(titulo=titulo,
                           data_composicao=data_composicao,
                           categoria=categoria,
-                          observacao=observacao,)
+                          observacao=observacao, )
         db.session.add(composicao)
         db.session.commit()
         return composicao
@@ -66,8 +66,8 @@ class Composicao(db.Model):
         return (self
                 .query
                 .filter_by(
-                    data_composicao=data_composicao,
-                    categoria=categoria)
+            data_composicao=data_composicao,
+            categoria=categoria)
                 .first())
 
     @classmethod

@@ -12,6 +12,7 @@ from infra import system_info_ns
 from infra.config import config
 from infra.database import wait_for_db, init_database, db
 from obras.musicas.controllers.composicao_controller import composicao_ns
+from obras.musicas.controllers.instrumento_controller import instrumento_ns
 from obras.musicas.controllers.subtitulo_controller import subtitulo_ns
 
 logging.basicConfig(
@@ -39,6 +40,7 @@ def create_app(config_name='default'):
     api.add_namespace(system_info_ns, path='/system')
     api.add_namespace(composicao_ns, path='/obras')
     api.add_namespace(subtitulo_ns, path='/obras')
+    api.add_namespace(instrumento_ns, path='/obras')
 
     return app
 
