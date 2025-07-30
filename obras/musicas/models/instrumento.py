@@ -32,7 +32,6 @@ class Instrumento(db.Model):
 
     @classmethod
     def create(self, nome, grupo):
-
         instrumento = self(nome=nome, grupo=grupo)
         db.session.add(instrumento)
         db.session.commit()

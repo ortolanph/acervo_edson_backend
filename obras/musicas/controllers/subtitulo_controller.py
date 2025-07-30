@@ -41,6 +41,7 @@ class SubtituloBasic(Resource):
 @subtitulo_ns.response(404, 'Subtítulo não encontrado')
 @subtitulo_ns.param('subtitulo_id', 'Identificador do subtitulo')
 class SubtituloResource(Resource):
+
     @subtitulo_ns.doc('get_subtitulo')
     @subtitulo_ns.marshal_with(subtitulo_model)
     def get(self, subtitulo_id):
@@ -86,6 +87,7 @@ class SubtituloResource(Resource):
 @subtitulo_ns.response(404, 'Subtítulos não encontrados')
 @subtitulo_ns.param('id_composicao', 'Identificação da composição')
 class SubtituloAdvancedResource(Resource):
+
     @subtitulo_ns.doc('get_all_subtitulos_by_composicao')
     @subtitulo_ns.marshal_with(subtitulo_model)
     def get(self, id_composicao):

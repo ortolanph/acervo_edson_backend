@@ -50,6 +50,7 @@ class InstrumentoBasic(Resource):
 @instrumento_ns.response(404, 'Instrumento não encontrado')
 @instrumento_ns.param('instrumento_id', 'Identificador do instrumento')
 class InstrumentoResource(Resource):
+
     @instrumento_ns.doc('get_instrumento')
     @instrumento_ns.marshal_with(instrumento_model)
     def get(self, instrumento_id):
@@ -95,6 +96,7 @@ class InstrumentoResource(Resource):
 @instrumento_ns.response(404, 'Instrumentos não encontrados')
 @instrumento_ns.param('grupo', 'Grupo da instrumento')
 class InstrumentoAdvancedResource(Resource):
+
     @instrumento_ns.doc('get_instrumentos_por_grupo')
     @instrumento_ns.marshal_list_with(instrumento_model)
     def get(self, grupo):
