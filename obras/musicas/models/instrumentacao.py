@@ -32,7 +32,6 @@ class Instrumentacao(db.Model):
 
     @classmethod
     def create(self, id_instrumento, id_composicao):
-
         instrumentaco = self(id_instrumento=id_instrumento, id_composicao=id_composicao)
         db.session.add(instrumentaco)
         db.session.commit()

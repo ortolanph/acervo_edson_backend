@@ -50,6 +50,7 @@ class ComposicaoBasic(Resource):
 @composicao_ns.response(404, 'Composição não encontrada')
 @composicao_ns.param('composicao_id', 'Identificador da composição')
 class ComposicaoResource(Resource):
+
     @composicao_ns.doc('get_composicao')
     @composicao_ns.marshal_with(composicao_model)
     def get(self, composicao_id):
@@ -95,6 +96,7 @@ class ComposicaoResource(Resource):
 @composicao_ns.response(404, 'Composição não encontrada')
 @composicao_ns.param('identificacao_composicao', 'Identificação da composição')
 class ComposicaoAdvancedResource(Resource):
+
     @composicao_ns.doc('get_composicao_by_data_and_categoria')
     @composicao_ns.marshal_with(composicao_model)
     def get(self, data_composicao, categoria):

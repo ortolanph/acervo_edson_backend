@@ -22,7 +22,6 @@ class InstrumentacaoBasic(Resource):
         if not data:
             instrumentacao_ns.abort(400, "No data provided")
 
-        # Validate required fields
         if (not data.get('id_composicao')
                 or not data.get('id_instrumento')):
             instrumentacao_ns.abort(400, "Campos não informados: (id_composicao, id_instrumento)")
@@ -69,7 +68,7 @@ class InstrumentacaoResource(Resource):
 @instrumentacao_ns.param('id_composicao', 'Identificação da composição')
 class ComposicaoAdvancedResource(Resource):
 
-    @instrumentacao_ns.doc('get_instrumentacao_by_categoria_id')
+    @instrumentacao_ns.doc('get_instrumentacao_by_id_composicao')
     @instrumentacao_ns.marshal_list_with(instrumentacao_output)
     def get(self, id_composicao):
         try:

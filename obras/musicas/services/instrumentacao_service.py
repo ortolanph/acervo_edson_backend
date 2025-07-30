@@ -1,4 +1,5 @@
 from infra import db
+from obras.musicas.models.composicao import Composicao
 from obras.musicas.models.instrumentacao import Instrumentacao
 from obras.musicas.models.instrumento import Instrumento
 
@@ -36,6 +37,11 @@ class InstrumentacaoService:
 
     @staticmethod
     def create_instrumentacao(data):
+        composicao = Composicao.get_by_id(data['id_composicao'])
+
+        if not composicao:
+            raise Exception("Composição não encontrada")
+
         existing_instrumentacao = Instrumentacao.get_by_id_instrumento_and_id_composicao(data['id_instrumento'],
                                                                                          data['id_composicao'])
         if existing_instrumentacao:

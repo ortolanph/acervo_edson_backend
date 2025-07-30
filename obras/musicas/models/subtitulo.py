@@ -35,7 +35,6 @@ class Subtitulo(db.Model):
 
     @classmethod
     def create(self, id_composicao, subtitulo, lingua):
-
         subtitulo = self(id_composicao=id_composicao,
                          subtitulo=subtitulo,
                          lingua=lingua)
