@@ -18,7 +18,7 @@ class InstrumentacaoService:
         for instrument in instrumentation:
             my_instrument = Instrumento.get_by_id(instrument['id_instrumento'])
 
-            if my_instrument is not None:
+            if not my_instrument:
                 instruments.append(my_instrument)
 
         return [instrument.to_dict() for instrument in instruments]
