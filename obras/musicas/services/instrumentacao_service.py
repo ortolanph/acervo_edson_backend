@@ -12,16 +12,27 @@ class InstrumentacaoService:
 
     @staticmethod
     def get_instrumentacao_by_composicao(id_composicao):
-        instrumentation = Instrumentacao.get_all_instrumentos_by_composicao(id_composicao)
+        instrumentations = Instrumentacao.get_all_instrumentos_by_composicao(id_composicao)
+
+        my_instrumentations = [instrumentation.to_dict() for instrumentation in instrumentations ]
 
         instruments = []
-        for instrument in instrumentation:
-            my_instrument = Instrumento.get_by_id(instrument['id_instrumento'])
+        for instrumentation in my_instrumentations:
+            instrument = Instrumento.get_by_id(instrumentation['id_instrumento']).to_dict()
 
-            if not my_instrument:
-                instruments.append(my_instrument)
+            print(instrument)
 
-        return [instrument.to_dict() for instrument in instruments]
+            if instrument:
+                instruments.append({
+                    'id_instrumentacao': instrumentation['id'],
+                    'id_instrumento': instrument['id'],
+                    'nome': instrument['nome'],
+                    'grupo': instrument['grupo'],
+                })
+
+        print(instruments)
+
+        return instruments
 
     @staticmethod
     def create_instrumentacao(data):

@@ -20,10 +20,10 @@ def get_instrumentacao_schema(api):
     })
 
     instrumentacao_input = api.model('InstrumentacaoInput', {
-        'id_instrumento': fields.String(required=True,
+        'id_instrumento': fields.Integer(required=True,
                                         description='Id do instrumento',
                                         example='1'),
-        'id_composicao': fields.String(required=True,
+        'id_composicao': fields.Integer(required=True,
                                        description='Id da composição',
                                        example='2'),
     })
@@ -32,9 +32,10 @@ def get_instrumentacao_schema(api):
         'id_instrumentacao': fields.Integer(description='Id da instrumentacao'),
         'id_instrumento': fields.Integer(description='Id do instrumento',
                                          example='1'),
-        'nome_instrumento': fields.String(description='Nome do instrumento',
+        'nome': fields.String(description='Nome do instrumento',
                                           example='Violino'),
-        'grupo_instrumento': fields.String(description='Grupo do instrumento')
+        'grupo': fields.String(description='Grupo do instrumento',
+                               example='Cordas')
     })
 
     return instrumentacao_model, instrumentacao_input, instrumentacao_output

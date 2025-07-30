@@ -23,9 +23,9 @@ class InstrumentacaoBasic(Resource):
             instrumentacao_ns.abort(400, "No data provided")
 
         # Validate required fields
-        if (data.get('id_composicao')
-                or not data.get('id_instrunento')):
-            instrumentacao_ns.abort(400, "Campos não informados: (id_composicao, id_instrunento)")
+        if (not data.get('id_composicao')
+                or not data.get('id_instrumento')):
+            instrumentacao_ns.abort(400, "Campos não informados: (id_composicao, id_instrumento)")
 
         try:
             instrumentacao = InstrumentacaoService.create_instrumentacao(data)
@@ -36,27 +36,27 @@ class InstrumentacaoBasic(Resource):
             instrumentacao_ns.abort(500, str(e))
 
 
-@instrumentacao_ns.route('/musicais/instrumentacao/<int:instrumentacao_id>')
+@instrumentacao_ns.route('/musicais/instrumentacao/<int:id_instrumentacao>')
 @instrumentacao_ns.response(404, 'Instrumentação não encontrada')
-@instrumentacao_ns.param('composicao_id', 'Identificador da instrumentação')
+@instrumentacao_ns.param('id_instrumentacao', 'Identificador da instrumentação')
 class InstrumentacaoResource(Resource):
 
     @instrumentacao_ns.doc('get_instrumentacao')
     @instrumentacao_ns.marshal_with(instrumentacao_model)
-    def get(self, instrumentacao_id):
+    def get(self, id_instrumentacao):
         try:
-            instrumentacao = InstrumentacaoService.get_instrumentacao_by_id(instrumentacao_id)
+            instrumentacao = InstrumentacaoService.get_instrumentacao_by_id(id_instrumentacao)
             if not instrumentacao:
-                instrumentacao_ns.abort(404, f"Instrumentação {instrumentacao_id} não encontrada")
+                instrumentacao_ns.abort(404, f"Instrumentação {id_instrumentacao} não encontrada")
             return instrumentacao.to_dict()
         except Exception as e:
-            instrumentacao_ns.abort(500, f"Error ao recuperar composição {instrumentacao_id}: {str(e)}")
+            instrumentacao_ns.abort(500, f"Error ao recuperar composição {id_instrumentacao}: {str(e)}")
 
     @instrumentacao_ns.doc('delete_instrumentacao')
     @instrumentacao_ns.response(204, 'Instrumentacao apagada')
-    def delete(self, instrumentacao_id):
+    def delete(self, id_instrumentacao):
         try:
-            deleted = InstrumentacaoService.delete_instrumentacao(instrumentacao_id)
+            deleted = InstrumentacaoService.delete_instrumentacao(id_instrumentacao)
             if not deleted:
                 instrumentacao_ns.abort(404, "Composição não encontrada")
             return '', 204
@@ -66,7 +66,7 @@ class InstrumentacaoResource(Resource):
 
 @instrumentacao_ns.route('/musicais/instrumentacao/<int:id_composicao>/composicao')
 @instrumentacao_ns.response(404, 'Composição não encontrada')
-@instrumentacao_ns.param('identificacao_composicao', 'Identificação da composição')
+@instrumentacao_ns.param('id_composicao', 'Identificação da composição')
 class ComposicaoAdvancedResource(Resource):
 
     @instrumentacao_ns.doc('get_instrumentacao_by_categoria_id')
@@ -74,8 +74,9 @@ class ComposicaoAdvancedResource(Resource):
     def get(self, id_composicao):
         try:
             instrumentacoes = InstrumentacaoService.get_instrumentacao_by_composicao(id_composicao)
+            print(instrumentacoes)
             if not instrumentacoes:
                 instrumentacao_ns.abort(404, f"Não foi encontrada instrumentação para composição {id_composicao}")
-            return [instrumentacao.to_dict() for instrumentacao in instrumentacoes]
+            return instrumentacoes
         except Exception as e:
             instrumentacao_ns.abort(500, f"Error ao recuperar instrumentacao: {str(e)}")
