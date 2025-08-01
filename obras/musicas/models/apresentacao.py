@@ -64,13 +64,13 @@ class Apresentacao(db.Model):
         }
 
     @classmethod
-    def create(self, id_composicao, localidade, local, evento, data_evento, is_estreia, url_evento):
+    def create(self, id_composicao, localidade, local, evento, data_evento, is_estreia, url_evento=None):
         apresentacao = self(id_composicao=id_composicao,
                             localidade=localidade,
                             local=local,
                             evento=evento,
                             data_evento=data_evento,
-                            is_estreia=is_estreia,
+                            estreia=is_estreia,
                             url_evento=url_evento)
 
         db.session.add(apresentacao)

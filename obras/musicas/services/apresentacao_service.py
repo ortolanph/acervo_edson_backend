@@ -11,7 +11,7 @@ class ApresentacaoService:
 
     @staticmethod
     def get_apresentacoes_by_composicao(id_composicao):
-        return Apresentacao.get_by_composicao_id(id_composicao)
+        return Apresentacao.get_by_id_composicao(id_composicao)
 
     @staticmethod
     def create_apresentacao(data):
@@ -25,7 +25,7 @@ class ApresentacaoService:
         apresentacoes = Apresentacao.get_by_id_composicao(id_composicao=data['id_composicao'])
 
         my_apresentacoes = [apresentacao.to_dict() for apresentacao in apresentacoes]
-        has_estreia = any(my_apresentacoes['estreiea'])
+        has_estreia = any(my_apresentacao['is_estreia'] for my_apresentacao in my_apresentacoes)
 
         if has_estreia:
             raise ValueError(f"Já existe estreia para essa composição")
@@ -38,8 +38,7 @@ class ApresentacaoService:
                 evento=data['evento'],
                 data_evento=data['data_evento'],
                 is_estreia=data['is_estreia'],
-                url_evento=data['url_evento']
-            )
+                url_evento=data['url_evento'])
         except Exception as e:
             db.session.rollback()
             raise Exception(f"Erro ao criar apresentacao: {str(e)}")
