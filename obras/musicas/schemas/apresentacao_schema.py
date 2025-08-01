@@ -1,0 +1,77 @@
+from flask_restx import fields
+
+
+def get_apresentacao_schema(api):
+    apresentacao_model = api.model('Apresentacao', {
+        'id': fields.Integer(readonly=True,
+                             description='Identificacao da apresentação'),
+        'id_composicao': fields.Integer(required=True,
+                                        description='Identificacao da composicao associada',
+                                        example="1"),
+        'localidade': fields.String(required=True,
+                                    description='Localidade geográfica da composição',
+                                    example='Campinas, São Paulo, Brasil'),
+        'local': fields.String(required=True,
+                               description='Local no qual a apresentação foi realizada',
+                               example="Concha Acústica - Pq Portugal"),
+        'evento': fields.String(required=True,
+                                description='Nome do evento',
+                                example='Compositores de Campinas'),
+        'data_evento': fields.Date(required=True,
+                                   description="Data do evento",
+                                   example="2025-10-10",
+                                   dt_format='iso8601'),
+        'is_estreia': fields.Boolean(required=True,
+                                     description="Marca se apresentação é de estreia",
+                                     example=True),
+        'url_evento': fields.String(description='Endereço web do evento',
+                                    example="http://www.example.com"),
+        'created_at': fields.DateTime(readonly=True,
+                                      description='Creation timestamp',
+                                      dt_format='iso8601'),
+        'updated_at': fields.DateTime(readonly=True,
+                                      description='Last update timestamp',
+                                      dt_format='iso8601')
+    })
+
+    apresentacao_input = api.model('ApresentacaoInput', {
+        'id_composicao': fields.Integer(required=True,
+                                        description='Identificacao da composicao associada',
+                                        example="1"),
+        'localidade': fields.String(required=True,
+                                    description='Localidade geográfica da composição',
+                                    example='Campinas, São Paulo, Brasil'),
+        'local': fields.String(required=True,
+                               description='Local no qual a apresentação foi realizada',
+                               example="Concha Acústica - Pq Portugal"),
+        'evento': fields.String(required=True,
+                                description='Nome do evento',
+                                example='Compositores de Campinas'),
+        'data_evento': fields.Date(required=True,
+                                   description="Data do evento",
+                                   example="2025-10-10",
+                                   dt_format='iso8601'),
+        'is_estreia': fields.Boolean(required=True,
+                                     description="Marca se apresentação é de estreia",
+                                     example=True),
+        'url_evento': fields.String(description='Endereço web do evento',
+                                    example="http://www.example.com"),
+    })
+
+    apresentacao_update = api.model('ApresentacaoUpdate', {
+        'localidade': fields.String(description='Localidade geográfica da composição',
+                                    example='Campinas, São Paulo, Brasil'),
+        'local': fields.String(description='Local no qual a apresentação foi realizada',
+                               example="Concha Acústica - Pq Portugal"),
+        'evento': fields.String(description='Nome do evento',
+                                example='Compositores de Campinas'),
+        'data_evento': fields.Date(description="Data do evento",
+                                   example="2025-10-10",
+                                   dt_format='iso8601'),
+        'is_estreia': fields.Boolean(description="Marca se apresentação é de estreia",
+                                     example=True),
+        'url_evento': fields.String(description='Endereço web do evento',
+                                    example="http://www.example.com"),
+    })
+
+    return apresentacao_model, apresentacao_input, apresentacao_update
