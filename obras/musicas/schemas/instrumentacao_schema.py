@@ -21,11 +21,11 @@ def get_instrumentacao_schema(api):
 
     instrumentacao_input = api.model('InstrumentacaoInput', {
         'id_instrumento': fields.Integer(required=True,
-                                        description='Id do instrumento',
-                                        example='1'),
+                                         description='Id do instrumento',
+                                         example='1'),
         'id_composicao': fields.Integer(required=True,
-                                       description='Id da composição',
-                                       example='2'),
+                                        description='Id da composição',
+                                        example='2'),
     })
 
     instrumentacao_output = api.model('InstrumentacaoOutput', {
@@ -33,7 +33,7 @@ def get_instrumentacao_schema(api):
         'id_instrumento': fields.Integer(description='Id do instrumento',
                                          example='1'),
         'nome': fields.String(description='Nome do instrumento',
-                                          example='Violino'),
+                              example='Violino'),
         'grupo': fields.String(description='Grupo do instrumento',
                                example='Cordas')
     })

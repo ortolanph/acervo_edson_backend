@@ -15,7 +15,7 @@ class InstrumentacaoService:
     def get_instrumentacao_by_composicao(id_composicao):
         instrumentations = Instrumentacao.get_all_instrumentos_by_composicao(id_composicao)
 
-        my_instrumentations = [instrumentation.to_dict() for instrumentation in instrumentations ]
+        my_instrumentations = [instrumentation.to_dict() for instrumentation in instrumentations]
 
         instruments = []
         for instrumentation in my_instrumentations:

@@ -68,8 +68,6 @@ def get_apresentacao_schema(api):
         'data_evento': fields.Date(description="Data do evento",
                                    example="2025-10-10",
                                    dt_format='iso8601'),
-        'is_estreia': fields.Boolean(description="Marca se apresentação é de estreia",
-                                     example=True),
         'url_evento': fields.String(description='Endereço web do evento',
                                     example="http://www.example.com"),
     })
