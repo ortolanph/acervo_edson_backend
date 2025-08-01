@@ -7,5 +7,7 @@
 # id_instrumento *
 # Nome do intérprete String *
 
+# Só permitir que instrumentos cadastrados na instrumentação sejam "usados" pelos intérpretes
+
 class Interprete:
     pass
