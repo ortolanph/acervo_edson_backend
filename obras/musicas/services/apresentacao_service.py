@@ -38,7 +38,8 @@ class ApresentacaoService:
                 evento=data['evento'],
                 data_evento=data['data_evento'],
                 is_estreia=data['is_estreia'],
-                url_evento=data['url_evento'])
+                url_evento=data['url_evento'],
+                regencia=data['regencia'])
         except Exception as e:
             db.session.rollback()
             raise Exception(f"Erro ao criar apresentacao: {str(e)}")

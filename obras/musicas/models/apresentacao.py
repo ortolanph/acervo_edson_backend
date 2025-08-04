@@ -33,6 +33,7 @@ class Apresentacao(db.Model):
     data_evento = db.Column(db.Date, nullable=False)
     estreia = db.Column(db.Boolean, nullable=False, default=False)
     url_evento = db.Column(db.String(255))
+    regencia = db.Column(db.String(255))
     created_at = db.Column(db.DateTime, default=datetime.now())
     updated_at = db.Column(db.DateTime, default=datetime.now(), onupdate=datetime.now())
 
@@ -46,6 +47,7 @@ class Apresentacao(db.Model):
                 f'data_evento:{self.data_evento.isoformat()}, '
                 f'estreia:{self.estreia}, '
                 f'url_evento:{self.url_evento}, '
+                f'regencia:{self.regencia}, '
                 f'created_at: {self.created_at.isoformat() if self.created_at else None} ',
                 f'updated_at: {self.updated_at.isoformat() if self.updated_at else None}>')
 
@@ -59,19 +61,21 @@ class Apresentacao(db.Model):
             'data_evento': self.data_evento.isoformat(),
             'is_estreia': self.estreia,
             'url_evento': self.url_evento,
+            'regencia': self.regencia,
             'created_at': self.created_at.isoformat() if self.created_at else None,
             'updated_at': self.updated_at.isoformat() if self.updated_at else None,
         }
 
     @classmethod
-    def create(self, id_composicao, localidade, local, evento, data_evento, is_estreia, url_evento=None):
+    def create(self, id_composicao, localidade, local, evento, data_evento, is_estreia, url_evento=None, regencia=None):
         apresentacao = self(id_composicao=id_composicao,
                             localidade=localidade,
                             local=local,
                             evento=evento,
                             data_evento=data_evento,
                             estreia=is_estreia,
-                            url_evento=url_evento)
+                            url_evento=url_evento,
+                            regencia=regencia)
 
         db.session.add(apresentacao)
         db.session.commit()

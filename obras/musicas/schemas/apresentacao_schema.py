@@ -26,6 +26,8 @@ def get_apresentacao_schema(api):
                                      example=True),
         'url_evento': fields.String(description='Endereço web do evento',
                                     example="http://www.example.com"),
+        'regencia': fields.String(description='Regente da apresentação',
+                                  example="Fulano de Tal"),
         'created_at': fields.DateTime(readonly=True,
                                       description='Creation timestamp',
                                       dt_format='iso8601'),
@@ -56,6 +58,8 @@ def get_apresentacao_schema(api):
                                      example=True),
         'url_evento': fields.String(description='Endereço web do evento',
                                     example="http://www.example.com"),
+        'regencia': fields.String(description='Regente da apresentação',
+                                    example="Fulano de Tal"),
     })
 
     apresentacao_update = api.model('ApresentacaoUpdate', {
@@ -70,6 +74,8 @@ def get_apresentacao_schema(api):
                                    dt_format='iso8601'),
         'url_evento': fields.String(description='Endereço web do evento',
                                     example="http://www.example.com"),
+        'regencia': fields.String(description='Regente da apresentação',
+                                  example="Fulano de Tal"),
     })
 
     return apresentacao_model, apresentacao_input, apresentacao_update
