@@ -1,0 +1,63 @@
+erDiagram
+    COMPOSICAO {
+        INTEGER id PK
+        VARCHAR titulo
+        VARCHAR data_composicao
+        VARCHAR categoria
+        TEXT observacao
+        DATETIME created_at
+        DATETIME updated_at
+    }
+
+    SUBTITULO {
+        INTEGER id PK
+        INTEGER id_composicao FK
+        VARCHAR subtitulo
+        VARCHAR lingua
+        DATETIME created_at
+        DATETIME updated_at
+    }
+
+    APRESENTACAO {
+        INTEGER id PK
+        INTEGER id_composicao FK
+        VARCHAR localidade
+        VARCHAR local
+        VARCHAR evento
+        DATE data_evento
+        BOOLEAN estreia
+        VARCHAR url_evento
+        VARCHAR regencia
+        DATETIME created_at
+        DATETIME updated_at
+    }
+
+    INSTRUMENTO {
+        INTEGER id PK
+        VARCHAR nome
+        VARCHAR grupo
+        DATETIME created_at
+        DATETIME updated_at
+    }
+
+    INSTRUMENTACAO {
+        INTEGER id PK
+        INTEGER id_instrumento FK
+        INTEGER id_composicao FK
+        DATETIME created_at
+        DATETIME updated_at
+    }
+
+    INTERPRETE {
+        INTEGER id PK
+        INTEGER id_apresentacao FK
+        INTEGER id_instrumento FK
+        VARCHAR nome
+    }
+
+    COMPOSICAO ||--o{ SUBTITULO : "has"
+    COMPOSICAO ||--o{ APRESENTACAO : "has"
+    COMPOSICAO ||--o{ INSTRUMENTACAO : "has"
+    INSTRUMENTO ||--o{ INSTRUMENTACAO : "used in"
+    APRESENTACAO ||--o{ INTERPRETE : "has"
+    INSTRUMENTO ||--o{ INTERPRETE : "played by"
