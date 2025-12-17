@@ -1,12 +1,15 @@
 erDiagram
     COMPOSICAO {
         INTEGER id PK
+        UUID composicao_id
         VARCHAR titulo
         VARCHAR data_composicao
         VARCHAR categoria
         TEXT observacao
         DATETIME created_at
+        VARCHAR created_by
         DATETIME updated_at
+        VARCHAR updated_by
     }
 
     SUBTITULO {
@@ -15,7 +18,9 @@ erDiagram
         VARCHAR subtitulo
         VARCHAR lingua
         DATETIME created_at
+        VARCHAR created_by
         DATETIME updated_at
+        VARCHAR updated_by
     }
 
     APRESENTACAO {
@@ -29,7 +34,9 @@ erDiagram
         VARCHAR url_evento
         VARCHAR regencia
         DATETIME created_at
+        VARCHAR created_by
         DATETIME updated_at
+        VARCHAR updated_by
     }
 
     INSTRUMENTO {
@@ -37,7 +44,9 @@ erDiagram
         VARCHAR nome
         VARCHAR grupo
         DATETIME created_at
+        VARCHAR created_by
         DATETIME updated_at
+        VARCHAR updated_by
     }
 
     INSTRUMENTACAO {
@@ -45,7 +54,9 @@ erDiagram
         INTEGER id_instrumento FK
         INTEGER id_composicao FK
         DATETIME created_at
+        VARCHAR created_by
         DATETIME updated_at
+        VARCHAR updated_by
     }
 
     INTERPRETE {
@@ -53,11 +64,16 @@ erDiagram
         INTEGER id_apresentacao FK
         INTEGER id_instrumento FK
         VARCHAR nome
+        VARCHAR url_artista
+        DATETIME created_at
+        VARCHAR created_by
+        DATETIME updated_at
+        VARCHAR updated_by
     }
 
     COMPOSICAO ||--o{ SUBTITULO : "has"
     COMPOSICAO ||--o{ APRESENTACAO : "has"
     COMPOSICAO ||--o{ INSTRUMENTACAO : "has"
-    INSTRUMENTO ||--o{ INSTRUMENTACAO : "used in"
     APRESENTACAO ||--o{ INTERPRETE : "has"
     INSTRUMENTO ||--o{ INTERPRETE : "played by"
+    INSTRUMENTO ||--o{ INSTRUMENTACAO : "used in"
