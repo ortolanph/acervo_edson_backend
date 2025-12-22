@@ -58,5 +58,12 @@
   * Declarative REST Client. OpenFeign creates a dynamic implementation of an interface decorated with JAX-RS or Spring MVC annotations.
 * **OAuth2 Client Security**
   * Spring Boot integration for Spring Security's OAuth2/OpenID Connect client features.
+---
+* **Rest Repositories HAL Explorer**
+  * Provides a simple, web-based UI for navigating hypermedia APIs built with Spring Data REST.
+  * hypermedia API exploration
+* **Spring Modulith Developer Tools**
+  * Support for building modular monolithic applications.
+
 
 https://www.baeldung.com/spring-rest-openapi-documentation
